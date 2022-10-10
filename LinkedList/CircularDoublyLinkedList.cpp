@@ -76,11 +76,12 @@ void deleteNode(int position)
         p=first;
         first=first->next;
         data=p->data;
-        delete p;
         if(first)
         {
-            first->prev=NULL;
+            first->prev=p->prev;
+            p->prev->next=first;
         }
+        delete p;
     }
     else
     {
@@ -113,10 +114,10 @@ void reverseList()
         p->prev=p->next;
         p->next=t;
         p=p->prev;
-
-        if(p->next==NULL)
+        if(p==first)
         {
-            first=p;
+            first=p->next;
+            break;
         }
      }
 
@@ -125,18 +126,16 @@ void reverseList()
 
 void displayAsc()
 {
-    if(!first)
-    {
-        return;
-    }
     struct node*p=first;
-    cout<<p->data<<endl;
-    p=p->next;
-
-    while(p!=first && p)
+    while(p)
     {
         cout<<p->data<<endl;
         p=p->next;
+
+        if(p==first)
+        {
+            break;
+        }
     }
     cout<<endl;
 }
@@ -150,7 +149,7 @@ int listLength()
 
     struct node*p=first->next;
     int len=1;
-    while(p && p->next!=first)
+    while(p && p!=first)
     {
         len++;
         p=p->next;
@@ -162,18 +161,18 @@ int main()
 {
     int A[]={10,20,30,40,50};
     create(A,5);
-    insertNode(4,0);
+    //insertNode(4,0);
     //displayAsc();
-    insertNode(8,3);
-    displayAsc();
-    // deleteNode(0);
-    // displayAsc();
-    // deleteNode(3);
-    // displayAsc();
+    //insertNode(8,3);
+    //displayAsc();
+    //deleteNode(0);
+    //displayAsc();
+    //deleteNode(3);
+    //displayAsc();
     // insertNode(12,6);
     // displayAsc();
     //reverseList();
-    //displayAsc();
+    displayAsc();
     cout<<"Length of Link List:"<<(listLength())<<endl;
     return 0;
 }
