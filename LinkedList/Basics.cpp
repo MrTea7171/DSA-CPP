@@ -188,23 +188,41 @@ struct node *recursiveSearchList(struct node * t,int key)
 }
 */
 
+int listMid(struct node * t)
+{
+    struct node *p, *q;
+    p=q=t;
+    while(q)
+    {
+        q=q->next;
+        if(q)
+        {
+            q=q->next;
+            p=p->next;
+        }
+    }
+
+    return p->data;
+}
+
 int main()
 {
     int A[]={4,9,7,8,6,0,2};
-    //createList(A,7);
-    int i=0;
-    while(i<7)
-    {
-        pushElement(i,A[i]);
-        i++;
-    }
-    displayList();
-    cout<<"Count is: "<<countList(first)<<endl;
-    cout<<"Sum is: "<<sumList(first)<<endl;
-    cout<<"Max Element in List : "<<maxInList(first)<<endl;
-    cout<<"Searching 9 in list : "<<searchList(first,9)<<endl;
-    pushElement(7,12);
-    displayList();
+    createList(A,7);
+    // int i=0;
+    // while(i<7)
+    // {
+    //     pushElement(i,A[i]);
+    //     i++;
+    // }
+    //displayList();
+    // cout<<"Count is: "<<countList(first)<<endl;
+    // cout<<"Sum is: "<<sumList(first)<<endl;
+    // cout<<"Max Element in List : "<<maxInList(first)<<endl;
+    // cout<<"Searching 9 in list : "<<searchList(first,9)<<endl;
+    // pushElement(7,12);
+    // displayList();
+    cout<<"Output:"<<listMid(first)<<endl;
     //cout<<"Searching 9 in list : "<<optimzedSearchList(first,9)<<endl;
     //displayList();
     //recursiveDisplayList(first);

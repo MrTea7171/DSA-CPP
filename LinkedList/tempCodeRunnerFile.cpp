@@ -1,2 +1,2 @@
-    // insertNode(12,6);
-    // displayAsc();
+
+    cout<<"Output:"<<listMid(first)<<endl;
