@@ -1,57 +1,76 @@
-template <typename T>
-struct node
-{
-    T data;
-    struct node<T> *next;
-};
+#ifndef MRTEA_STACKS
+#define MRTEA_STACKS
 
-template <typename T>
-class Stack
+class StackBox
 {
     private:
-        struct node<T> *top=NULL;
-    
+        template <typename T>
+        struct stackNode
+        {
+            T data;
+            struct stackNode<T> *next;
+        };
+
     public:
-
-        bool isEmpty()
+        template <typename T>
+        class Stack
         {
-            return (!top)?true:false;
-        }
+            private:
+                struct stackNode<T> *top=NULL;
+            
+            public:
 
-        bool isFull()
-        {
-            struct node<T> *t=new node<T>;
-            return (!t)?true:false;
-        }
-
-        void push(T newData)
-        {
-            if(!isFull())
-            {
-                struct node<T> *enteryNode=new node<T>;
-                enteryNode->data=newData;
-                if(top)
+                bool isEmpty()
                 {
-                    enteryNode->next=top;
-                    top=enteryNode;
+                    return (!top)?true:false;
                 }
-                else
-                {
-                    enteryNode->next=NULL;
-                    top=enteryNode;
-                }
-            }
-        }
 
-        T pop()
-        {
-            if(!isEmpty())
-            {
-                struct node<T> *onTop=top;
-                top=top->next;
-                T onTopData=onTop->data;
-                delete onTop;
-                return onTopData;
-            }
-        }
+                bool isFull()
+                {
+                    struct stackNode<T> *t=new stackNode<T>;
+                    return (!t)?true:false;
+                }
+
+                void push(T newData)
+                {
+                    if(!isFull())
+                    {
+                        struct stackNode<T> *enterystackNode=new stackNode<T>;
+                        enterystackNode->data=newData;
+                        if(top)
+                        {
+                            enterystackNode->next=top;
+                            top=enterystackNode;
+                        }
+                        else
+                        {
+                            enterystackNode->next=NULL;
+                            top=enterystackNode;
+                        }
+                    }
+                }
+
+                T pop()
+                {
+                    if(!isEmpty())
+                    {
+                        struct stackNode<T> *onTop=top;
+                        top=top->next;
+                        T onTopData=onTop->data;
+                        delete onTop;
+                        return onTopData;
+                    }
+                }
+
+                T peek()
+                {
+                    if(!isEmpty())
+                    {
+                        return top->data;
+                    }
+                }
+        };
 };
+
+#endif
+
