@@ -1,85 +1,93 @@
-template <typename T>
-struct node
-{
-    T data;
-    struct node * next;
-};
-
-template <typename T>
-class Queue
+#ifndef MRTEA_QUEUES
+#define MRTEA_QUEUES
+class QueueLine
 {
     private:
-        struct node <T> *front=NULL;
-        struct node <T> *rear=NULL;
-    
+        template <typename T>
+        struct queueNode
+        {
+            T data;
+            struct queueNode * next;
+        };
+
     public:
-        bool isEmpty()
+        template <typename T>
+        class Queue
         {
-            return (!front)?true:false;
-        }
-
-        bool isFull()
-        {
-            struct node<T> *t=new node<T>;
-            return (!t)?true:false;
-        }
-
-        void enqueue(T x)
-        {
-            if(!isFull())
-            {
-                struct node<T> *t=new node<T>;
-                t->data=x;
-                t->next=NULL;
-
-                if(front==NULL)
+            private:
+                struct queueNode <T> *front=NULL;
+                struct queueNode <T> *rear=NULL;
+            
+            public:
+                bool isEmpty()
                 {
-                    front=rear=t;
-                }
-                else
-                {
-                    rear->next=t;
-                    rear=t;
+                    return (!front)?true:false;
                 }
 
-            }
-
-        }
-
-        T dequeue()
-        {
-            if(!isEmpty())
-            {
-                struct node<T> *t=front;
-                front=front->next;
-
-                T x=t->data;
-                delete t;
-                return x;
-            }
-        }
-
-        T peek()
-        {
-            if(!isEmpty())
-            {
-                return front->data;
-            }
-        }
-
-        void display()
-        {
-            if(!isEmpty())
-            {
-                struct node<T> *t=front;
-                
-                while(t)
+                bool isFull()
                 {
-                    cout<<t->data<<endl;
-                    t=t->next;
+                    struct queueNode<T> *t=new queueNode<T>;
+                    return (!t)?true:false;
                 }
-            }
-        }
+
+                void enqueue(T x)
+                {
+                    if(!isFull())
+                    {
+                        struct queueNode<T> *t=new queueNode<T>;
+                        t->data=x;
+                        t->next=NULL;
+
+                        if(front==NULL)
+                        {
+                            front=rear=t;
+                        }
+                        else
+                        {
+                            rear->next=t;
+                            rear=t;
+                        }
+
+                    }
+
+                }
+
+                T dequeue()
+                {
+                    if(!isEmpty())
+                    {
+                        struct queueNode<T> *t=front;
+                        front=front->next;
+
+                        T x=t->data;
+                        delete t;
+                        return x;
+                    }
+                }
+
+                T peek()
+                {
+                    if(!isEmpty())
+                    {
+                        return front->data;
+                    }
+                }
+
+                void display()
+                {
+                    if(!isEmpty())
+                    {
+                        struct queueNode<T> *t=front;
+                        
+                        while(t)
+                        {
+                            cout<<t->data<<endl;
+                            t=t->next;
+                        }
+                    }
+                }
 
 
+        };
 };
+#endif
