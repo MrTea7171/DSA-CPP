@@ -87,6 +87,24 @@ class QueueLine
                     }
                 }
 
+                int size()
+                {
+                    if(!isEmpty())
+                    {
+                        int x=0;
+                        struct queueNode<T> *t=front;
+                        
+                        while(t)
+                        {
+                            x++;
+                            t=t->next;
+                        }
+                        return x;
+                    }
+
+                    return 0;
+                }
+
 
         };
 };

@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
-#include "../Queues/Queue.h"
-#include "../Stacks/Stack.h"
+#include "../../Queues/Queue.h"
+#include "../../Stacks/Stack.h"
 
 struct treeNode
 {
@@ -175,9 +175,9 @@ int main()
     b.insert(-1);
     b.insert(35);
     b.insert(45);
-    //b.preOrderDisplay();
-    //b.inOrderDisplay();
+    b.preOrderDisplay();
+    b.inOrderDisplay();
     //b.postOrderDisplay();
-    b.LevelOrderTraversal();
+    //b.LevelOrderTraversal();
     return 0;
 }
